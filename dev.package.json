@@ -1,0 +1,14 @@
+{
+  "name": "macgyvr-foundation",
+  "version": "0.1.0",
+  "dependencies": {
+    "macgyver": "https://github.com/bengfarrell/macgyvr.git",
+    "browser-es-module-loader": "^0.4.1"
+  },
+  "devDependencies": {
+    "open": "0.0.5"
+  },
+  "scripts": {
+    "editor": "node editor/server.js"
+  }
+}

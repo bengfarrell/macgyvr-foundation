@@ -9,6 +9,9 @@
     "open": "0.0.5"
   },
   "scripts": {
-    "editor": "node editor/server.js"
+    "server": "node server.js",
+    "editor": "node server.js editor/index.html",
+    "preview": "node server.js index-dev.html",
+    "build": "node server.js index-build.html"
   }
 }

@@ -16,10 +16,11 @@ http.createServer(function (request, response) {
     }
 
     var filePath = request.url;
-    if (filePath == '/')
-        filePath = '/index.html';
+    if (filePath == '/') {
+        filePath = '/index-dev.html';
+    }
 
-    filePath = './editor' + filePath;
+    filePath = '.' + filePath;
 
     var extname = path.extname(filePath);
     var contentType = 'text/html';
@@ -66,5 +67,12 @@ http.createServer(function (request, response) {
 
 }).listen(8125);
 console.log('Server running at http://127.0.0.1:8125/');
-open('http://127.0.0.1:8125');
+console.log('Editor running at http://127.0.0.1:8125/editor/index.html');
+console.log('Preview running at http://127.0.0.1:8125/index-dev.html');
+
+process.argv.forEach(function (val, index, array) {
+    if (index === 2) {
+        open('http://127.0.0.1:8125/' + val);
+    }
+});
 

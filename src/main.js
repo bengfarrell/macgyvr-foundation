@@ -7,7 +7,7 @@ export default class Main {
 
         scene.addObjects([
             new Cube(),
-            new TestScene({ scene: './src/assets/testscene.json' })
+            new TestScene({ scene: './src/assets/tempscene.json' })
         ]);
     }
 

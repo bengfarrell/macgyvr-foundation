@@ -21,6 +21,9 @@ To access the editor, go to http://127.0.0.1:8125/editor/index.html
 Alternately, to load these pages at server start:
 
 > "npm run preview"
+
+or 
+
 > "npm run editor"
 
 The editor (the only modification from the original editor) will auto-save your scene in the path listed in the input box at the top right of the page.

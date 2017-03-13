@@ -9,9 +9,17 @@
     <script src="./node_modules/macgyvr/macgyvr-debug.js"></script>
     <script src="./node_modules/macgyvr/macgyvr-extras.js"></script>
 
+    <style>
+        button {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
 </head>
 <body>
     <macgyvr-scene inspectable autolight debugview outofbodykeycode="13"></macgyvr-scene>
+    <button class="connect-button">connect</button>
 
     <script>
         var loader = new BrowserESModuleLoader();

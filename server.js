@@ -4,7 +4,8 @@ var path = require('path');
 var open = require('open');
 
 http.createServer(function (request, response) {
-    if (request.url === '/savescene') {
+    console.log('saving', request.url);
+    if (request.url === '/editor/savescene') {
         var data = '';
         request.on('data', function (chunk) {
             data += chunk;

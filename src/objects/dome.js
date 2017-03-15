@@ -21,7 +21,7 @@ export default class Dome extends BaseGroup {
      * @param time
      */
     onRender(time) {
-        if (this.sceneCollection.input.connected) {
+        /*if (this.sceneCollection.input.connected) {
             var direction = new THREE.Vector3( 0, 0, -1).applyQuaternion( this.sceneCollection.input.orientation );
             var raycaster = new THREE.Raycaster();
             raycaster.set( this.sceneCollection.camera.position, direction );
@@ -32,7 +32,7 @@ export default class Dome extends BaseGroup {
                 this._mesh.geometry.faces[this._coloredFace].color.set(0xff9145);
                 this._mesh.geometry.colorsNeedUpdate = true;
             }
-        }
+        }*/
     }
 
     onInput() {

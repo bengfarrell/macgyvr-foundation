@@ -12,11 +12,11 @@ export default class Main extends BaseApplication {
         /**
          * Daydream controller
          */
-        this._sceneCollection.input = new DaydreamInput();
+        /*this._sceneCollection.input = new DaydreamInput();
         document.querySelector('.connect-button').addEventListener('click', e => {
             e.target.remove();
             this._sceneCollection.input.start();
-        });
+        });*/
 
         /**
          * Gaze Input

@@ -14,8 +14,7 @@ export default class Cube extends BaseGroup {
         this.tweener = new Tween(this);
         //this.input = new GazeInput(this.sceneCollection, [this._mesh]);
         //this.input.addListener( (objects) => this.onGazeInput(objects));
-
-        this.sceneCollection.input.addListener( (changed, state) => this.onInput(changed, state));
+        //this.sceneCollection.input.addListener( (changed, state) => this.onInput(changed, state));
     }
 
     /**

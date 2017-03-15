@@ -2,9 +2,10 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var open = require('open');
+var os = require('os');
+
 
 http.createServer(function (request, response) {
-    console.log('saving', request.url);
     if (request.url === '/editor/savescene') {
         var data = '';
         request.on('data', function (chunk) {
@@ -70,6 +71,31 @@ http.createServer(function (request, response) {
 console.log('Server running at http://127.0.0.1:8125/');
 console.log('Editor running at http://127.0.0.1:8125/editor/index.html');
 console.log('Preview running at http://127.0.0.1:8125/index-dev.html');
+
+var ifaces = os.networkInterfaces();
+Object.keys(ifaces).forEach(function (ifname) {
+    var alias = 0;
+
+    ifaces[ifname].forEach(function (iface) {
+        if ('IPv4' !== iface.family || iface.internal !== false) {
+            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+            return;
+        }
+
+        if (alias >= 1) {
+            // this single interface has multiple ipv4 addresses
+            console.log('Server running at ', iface.address + ':8125/');
+            console.log('Editor running at ', iface.address + ':8125/editor/index.html');
+            console.log('Preview running at ', iface.address + ':8125/index-dev.html');
+        } else {
+            // this interface has only one ipv4 adress
+            console.log('Server running at ', iface.address);
+            console.log('Editor running at ', iface.address + ':8125/editor/index.html');
+            console.log('Preview running at ', iface.address + ':8125/index-dev.html');
+        }
+        ++alias;
+    });
+});
 
 process.argv.forEach(function (val, index, array) {
     if (index === 2) {

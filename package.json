@@ -6,7 +6,8 @@
     "browser-es-module-loader": "^0.4.1"
   },
   "devDependencies": {
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "os": "^0.1.1"
   },
   "scripts": {
     "server": "node server.js",

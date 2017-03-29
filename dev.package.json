@@ -2,7 +2,7 @@
   "name": "macgyvr-foundation",
   "version": "0.1.0",
   "dependencies": {
-    "macgyver": "https://github.com/bengfarrell/macgyvr.git"
+    "macgyvr": "0.1.1"
   },
   "devDependencies": {
     "open": "0.0.5",

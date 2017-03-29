@@ -1,34 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no"/>
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title></title>
-
-    <script src="./node_modules/browser-es-module-loader/dist/babel-browser-build.js"></script>
-    <script src="./node_modules/browser-es-module-loader/dist/browser-es-module-loader.js"></script>
-    <script src="./node_modules/macgyvr/macgyvr-debug.js"></script>
-    <script src="./node_modules/macgyvr/macgyvr-extras.js"></script>
-
-    <style>
-        button {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-        }
-    </style>
+    <script src="./node_modules/macgyvr/macgyvr-full-dev.js"></script>
 </head>
 <body>
-    <macgyvr-scene inspectable autolight debugview outofbodykeycode="13"></macgyvr-scene>
-    <button class="connect-button">connect</button>
+    <a-scene></a-scene>
 
     <script>
         var loader = new BrowserESModuleLoader();
         loader.import('./src/main.js').then(function(App) {
-            new App.default(document.querySelector('macgyvr-scene'));
+            new App.default(document.querySelector('a-scene'));
         });
     </script>
 </body>

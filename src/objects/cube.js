@@ -1,5 +1,5 @@
 import BaseGroup from '../../node_modules/macgyvr/src/basegroup.js';
-import Tween from '../../node_modules/macgyvr/src/plugins/tween.js';
+import Animation from '../../node_modules/macgyvr/src/utils/animation.js';
 
 export default class Cube extends BaseGroup {
     /**
@@ -7,45 +7,49 @@ export default class Cube extends BaseGroup {
      * @param scene
      */
     onCreate() {
+        this._pointingAt = false;
         this._material = this.createMaterial();
         this._mesh = new THREE.Mesh(this.createGeometry(), this._material);
+        this.scene.controller.addPointable(this._mesh);
+        this.scene.controller.addListener('button', (type, event) => this.onClick(type, event));
         this.add(this._mesh, 'cube');
         this.group.position.z = -20;
-        this.tweener = new Tween(this);
-        //this.input = new GazeInput(this.sceneCollection, [this._mesh]);
-        //this.input.addListener( (objects) => this.onGazeInput(objects));
-        //this.sceneCollection.input.addListener( (changed, state) => this.onInput(changed, state));
+        this._mesh.position.x = -12;
+        this.animation = new Animation(this);
     }
 
     /**
-     * on object click event
-     * @param collisions
+     * on click
+     * @param type
+     * @param event
      */
-    onInput() {
-        var pointingAt = this.sceneCollection.input.pointingAt([this._mesh]);
-        if (pointingAt.length > 0 && pointingAt[0].object === this._mesh) {
+    onClick(type, event) {
+        if (this.scene.controller.isPointingAt(this._mesh)) {
             var props = {
                 target: this._mesh,
                 duration: 3000
             };
-            this.tweener.animateColor( 0xff0000, 0x00ff00, props );
-            this.tweener.animatePosition( new THREE.Vector3(0,0,0), new THREE.Vector3(10,6,3), props );
+            this.animation.animatePosition( this._mesh.position, new THREE.Vector3(Math.random() * 15, Math.random() * 15, Math.random() * 15), props );
         }
     }
-
-    /**
-     * on day dream input
-     * @param changed
-     * @param state
-     */
-    onDayDreamInput(changed, state) {}
 
     /**
      * on render
      * @param time
      */
     onRender(time) {
-        this.group.rotation.y += .01;
+        this._mesh.rotation.y += .01;
+        var pointing = this._scene.controller.isPointingAt(this._mesh);
+        if (pointing !== this._pointingAt) {
+            if (pointing) {
+                this._mesh.scale.set(1.05, 1.05, 1.05);
+                this._mesh.material.color.set(0xffff00);
+            } else {
+                this._mesh.scale.set(1.0, 1.0, 1.0);
+                this._mesh.material.color.set(0xff0000);
+            }
+            this._pointingAt = pointing;
+        }
     }
 
     /**
@@ -64,8 +68,6 @@ export default class Cube extends BaseGroup {
             color      :  0xff0000,
             shininess  :  10,
             shading    :  THREE.FlatShading,
-            transparent: true,
-            opacity    : 1
         });
     }
 }

@@ -2,8 +2,7 @@
   "name": "macgyvr-foundation",
   "version": "0.1.0",
   "dependencies": {
-    "macgyver": "https://github.com/bengfarrell/macgyvr.git",
-    "browser-es-module-loader": "^0.4.1"
+    "macgyver": "https://github.com/bengfarrell/macgyvr.git"
   },
   "devDependencies": {
     "open": "0.0.5",
@@ -14,5 +13,6 @@
     "editor": "node server.js editor/index.html",
     "preview": "node server.js index-dev.html",
     "build": "node server.js index-build.html"
-  }
+  },
+  "browserify": { "transform": [ "babelify" ] }
 }

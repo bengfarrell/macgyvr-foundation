@@ -11,11 +11,17 @@ export default class Holes extends AFrameGroup {
     }
 
     populate(places) {
-        console.log('populate places');
         places.forEach( i => {
             let hole = new HoleMarker();
+            hole.data = i;
             hole.translate(i.position);
             this.add(hole);
+        });
+    }
+
+    refreshPositions() {
+        this.children.forEach( hole => {
+            hole.translate(hole.data.position);
         });
     }
 }

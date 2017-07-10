@@ -5,6 +5,14 @@ export default class HoleMarker extends AFrameGroup {
         super(config);
     }
 
+    get data() {
+        return this._data;
+    }
+
+    set data(val) {
+        this._data = val;
+    }
+
     /**
      * on create scene (or earliest possible opportunity)
      * @param scene
@@ -15,7 +23,7 @@ export default class HoleMarker extends AFrameGroup {
             'height': 2,
             'depth': .25,
             'color': '#ffff00',
-            'position':'0 -10 0'
+            'position':'0 -15 0'
         }));
     }
 

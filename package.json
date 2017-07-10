@@ -3,16 +3,7 @@
   "version": "0.1.0",
   "devDependencies": {
     "mapbox-gl": "^0.35.0",
-    "open": "0.0.5",
-    "os": "^0.1.1",
-    "macgyvr": "0.1.1",
-    "threebox": "https://github.com/peterqliu/threebox.git"
-  },
-  "scripts": {
-    "server": "node server.js",
-    "editor": "node server.js editor/index.html",
-    "preview": "node server.js index-dev.html",
-    "build": "node server.js index-build.html"
+    "macgyvr": "0.1.1"
   },
   "browserify": {
     "transform": [

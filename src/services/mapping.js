@@ -63,11 +63,9 @@ export default class Mapping extends EventListener {
         // The position (origin at top-left corner) in pixel space
         let point = this._mapbox.project([long, lat]);
         return {
-            x: (point.x / this.config.pixelsToMeters) - (this.config.mapMetersWidth/ 2),
-            // y-coord is inverted (positive up in world space, positive down in
-            // pixel space)
-            z: -(point.y / this.config.pixelsToMeters) + (this.config.mapMetersHeight / 2),
-            y: 0
+            x: -this.config.mapMetersWidth/ 2 + (point.x / this.config.pixelsToMeters),
+            y: 0,
+            z: -this.config.mapMetersHeight/ 2 + (point.y / this.config.pixelsToMeters)
         };
     }
 }

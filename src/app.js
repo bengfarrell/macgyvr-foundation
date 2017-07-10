@@ -37,6 +37,8 @@ export default class Main extends BaseApplication {
         if (this.objects.avatar ) {
             this.objects.avatar.translate(params.worldPosition);
         }
+
+        this.holes.refreshPositions();
     }
 
     onRender(time) {}

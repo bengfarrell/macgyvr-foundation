@@ -9,6 +9,16 @@ export default class PointsOfInterest extends EventListener {
     }
 
     /**
+     * populate/refresh world positions
+     * @param map
+     */
+    updateWorldPositions(map) {
+        this.places.forEach( i => {
+            i.position = map.project(i.location.longitude, i.location.latitude);
+        });
+    }
+
+    /**
      * places search
      * @param geo
      */
@@ -28,7 +38,7 @@ export default class PointsOfInterest extends EventListener {
     /**
      * get farthest
      */
-    getClosest() {
+    closest() {
         if (this.places.length == 0) { return null; }
         return this.places[0];
     }
@@ -37,7 +47,7 @@ export default class PointsOfInterest extends EventListener {
     /**
      * get farthest
      */
-    getFarthest() {
+    farthest() {
         if (this.places.length == 0) { return null; }
         return this.places[this.places.length-1];
     }

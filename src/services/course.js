@@ -1,6 +1,6 @@
 import EventListener from '../../node_modules/macgyvr/src/utils/eventlistener.js';
 import MappingService from './mapping.js';
-import PlacesService from './places.js';
+import PointsOfInterestService from './pointsofinterest.js';
 import GeoTrackerService from './geotracker.js';
 
 export default class Course extends EventListener {
@@ -18,25 +18,24 @@ export default class Course extends EventListener {
             this.map.addListener(MappingService.LOADED, (eventtype, location) => this.onMapLoaded(location) );
         } else {
             this.map.location = location;
+            this.poi.updateWorldPositions(this.map);
+            let centerPos = this.map.project(this.geo.currentPosition.coords.longitude, this.geo.currentPosition.coords.latitude);
+            this.triggerEvent(Course.LOCATIONUPDATE, { location: this.geo.currentPosition, worldPosition: centerPos, places: this.poi.places } );
         }
     }
 
     onMapLoaded(params) {
-        this.places = new PlacesService();
-        this.places.search(this.geo.currentPosition, 500);
-        this.places.addListener(PlacesService.PLACESFOUND_EVENT, (eventtype, places) => this.onPlacesFound(places));
+        this.poi = new PointsOfInterestService();
+        this.poi.search(this.geo.currentPosition, 500);
+        this.poi.addListener(PointsOfInterestService.PLACESFOUND_EVENT, (eventtype, places) => this.onPlacesFound(places));
     }
 
     onPlacesFound(places) {
-        places.forEach( i => {
-            i.position = this.map.project(i.location.longitude, i.location.latitude);
-        });
-
+        this.poi.updateWorldPositions(this.map);
         let centerPos = this.map.project(this.geo.currentPosition.coords.longitude, this.geo.currentPosition.coords.latitude);
         this.triggerEvent(Course.LOADED, { location: this.geo.currentPosition, worldPosition: centerPos, places: places } );
     }
 }
 
 Course.LOCATIONUPDATE = 'locationupdate';
-Course.PLACESUPDATE = 'placesupdate';
 Course.LOADED = 'loaded';

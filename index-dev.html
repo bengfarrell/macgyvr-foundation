@@ -4,24 +4,53 @@
     <script src="node_modules/macgyvr/macgyvr-full-dev.js"></script>
     <script src='node_modules/mapbox-gl/dist/mapbox-gl-dev.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHZeGKv2Co0H33ag9QpYG1UoxfX6rTqng&libraries=places" async defer></script>
-    <link href='node_modules/mapbox-gl/dist/mapbox-gl.css' rel='stylesheet' />
-</head>
-<body>
-<a-scene id="scene">
-    <a-entity camera="userHeight: 1.6" look-controls></a-entity>
-</a-scene>
 
-<script>
-    var loader = new BrowserESModuleLoader();
-    loader.import('./src/app.js').then(function(App) {
-        var app = new App.default(document.querySelector('a-scene'), {
-            simulateLocation: { latitude: 37.814292699999996, longitude: -122.24341519999999 },
-            mapboxAccessToken: 'pk.eyJ1IjoiYmZhcnJlbGxmb3JldmVyIiwiYSI6ImNqMWJpZXRrNzA5MmIzMnFxaTFzczI2MTYifQ.QONAIJnJjaxg5ktaIhGtJg',
-            mapMetersWidth: 100,
-            mapMetersHeight: 100,
-            pixelsToMeters: 10,
+    <script src="./src/2d/components/courselist/courselist.js"></script>
+    <script src="./src/2d/components/coursechooserpage/coursechooserpage.js"></script>
+    <script src="./src/2d/components/appui/appui.js"></script>
+
+    <link href='node_modules/mapbox-gl/dist/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a-scene embedded id="scene" vr-mode-ui="enabled: false">
+        <a-entity id="camera" camera="userHeight: 1.0" look-controls></a-entity>
+    </a-scene>
+
+    <abeach-appui></abeach-appui>
+
+
+    <script>
+        var loader = new BrowserESModuleLoader();
+        loader.import('./src/app.js').then(function(App) {
+            var app = new App.default(document.querySelector('a-scene'), {
+                simulateLocation: { latitude: 37.814292699999996, longitude: -122.24341519999999 },
+                mapboxAccessToken: 'pk.eyJ1IjoiYmZhcnJlbGxmb3JldmVyIiwiYSI6ImNqMWJpZXRrNzA5MmIzMnFxaTFzczI2MTYifQ.QONAIJnJjaxg5ktaIhGtJg',
+                mapMetersWidth: 100,
+                mapMetersHeight: 100,
+                pixelsToMeters: 10,
+                applicationUI: document.querySelector('abeach-appui')
+            });
         });
-    });
-</script>
+
+        window.addEventListener('resize', function() {
+            onPageResize();
+        });
+
+        function onPageResize() {
+            document.querySelector('abeach-appui').style.height = window.innerHeight/2 + 'px';
+            document.querySelector('a-scene').style.height = window.innerHeight/2 + 'px';
+        }
+        onPageResize();
+    </script>
 </body>
 </html>

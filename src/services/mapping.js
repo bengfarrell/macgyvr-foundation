@@ -20,6 +20,7 @@ export default class Mapping extends EventListener {
         this.currentLocation = loc;
         this._mapboxEl = document.createElement('div');
         this._mapboxEl.setAttribute('id', 'mapbox');
+        this._mapboxEl.style.left = '-99999px';
         this._mapboxEl.style.width = this.config.mapMetersWidth * this.config.pixelsToMeters + 'px';
         this._mapboxEl.style.height = this.config.mapMetersHeight * this.config.pixelsToMeters + 'px';
         document.body.appendChild(this._mapboxEl);

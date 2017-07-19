@@ -13,7 +13,8 @@ export default class Main extends BaseApplication {
         this.course = new CourseService(this.config);
         this.course.addListener(CourseService.LOADED, (eventtype, params) => this.onCourseLoaded(params) );
         this.course.addListener(CourseService.LOCATIONUPDATE, (eventtype, params) => this.onLocationUpdate(params) );
-        this.course.addListener(CourseService.PLACESUPDATE, (eventtype, params) => this.onPlacesFound(params) );
+
+        this.scene = document.querySelector('#scene');
     }
 
     onCourseLoaded(params) {
@@ -31,15 +32,18 @@ export default class Main extends BaseApplication {
             this.objects.avatar,
             this.holes
         ]);
+
+        this.config.applicationUI.setAttribute('appdata', JSON.stringify( { places: params.places }));
+        this.config.applicationUI.addEventListener( CourseChooserPage.PREVIEW_HOLE, event => this.course.previewHole(event.detail.id, document.querySelector('#camera')));
     }
 
     onLocationUpdate(params) {
         if (this.objects.avatar ) {
             this.objects.avatar.translate(params.worldPosition);
         }
-
         this.holes.refreshPositions();
     }
+
 
     onRender(time) {}
 }

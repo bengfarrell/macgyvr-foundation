@@ -18,14 +18,10 @@ export default class HoleMarker extends AFrameGroup {
      * @param scene
      */
     onCreate(scene) {
-        this._flag = this.add(AFrameGroup.utils.createNode('a-box', {
-            'width': .25,
-            'height': 2,
-            'depth': .25,
-            'color': '#ffff00',
-            'position':'0 -15 0'
+        this._flag = this.add(AFrameGroup.utils.createNode('a-entity', {
+            'scale': '3 3 3',
+            'obj_model': 'obj: ./assets/flag/model.obj; mtl: ./assets/flag/materials.mtl',
+            'position': '0 -13 0'
         }));
     }
-
-
 }

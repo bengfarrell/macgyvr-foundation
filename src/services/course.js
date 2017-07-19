@@ -2,6 +2,7 @@ import EventListener from '../../node_modules/macgyvr/src/utils/eventlistener.js
 import MappingService from './mapping.js';
 import PointsOfInterestService from './pointsofinterest.js';
 import GeoTrackerService from './geotracker.js';
+import AFrameUtils from '../../node_modules/macgyvr/src/utils/aframe.js';
 
 export default class Course extends EventListener {
     constructor(config) {
@@ -34,6 +35,17 @@ export default class Course extends EventListener {
         this.poi.updateWorldPositions(this.map);
         let centerPos = this.map.project(this.geo.currentPosition.coords.longitude, this.geo.currentPosition.coords.latitude);
         this.triggerEvent(Course.LOADED, { location: this.geo.currentPosition, worldPosition: centerPos, places: places } );
+    }
+
+    previewHole(id, camera) {
+        let hole = this.poi.getHoleById(id);
+        AFrameUtils.addAnimation(camera, {
+            attribute: 'position',
+            duration: 2000,
+            easing: 'ease-in-out',
+            from: AFRAME.utils.coordinates.stringify(camera.getAttribute('position')),
+            to: AFRAME.utils.coordinates.stringify(hole.position)
+        }, true);
     }
 }
 

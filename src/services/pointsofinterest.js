@@ -62,13 +62,21 @@ export default class PointsOfInterest extends EventListener {
     }
 
     /**
+     * get hole by id
+     * @param id
+     */
+    getHoleById(id) {
+        return this.places.filter(function(place) { return id === place.id; })[0];
+    }
+
+    /**
      * update distances in location list from origin
      */
     updateDistances() {
-        if (!this.geo || !self.places) {
+        if (!this.geo || !this.places) {
             return;
         }
-        this.places.forEach(function(loc) {
+        this.places.forEach((loc) => {
             loc.distance = GeoMath.calculateDistance(loc.location, this.geo.coords);
         });
         this.sortByProximity();
@@ -86,12 +94,23 @@ export default class PointsOfInterest extends EventListener {
                     name: i.name,
                     types: i.types,
                     rating: i.rating,
+                    id: this.guid()
                    // photo: i.photos[0].getUrl()
                 };
                 this.places.push(dest);
             });
         this.updateDistances();
         this.triggerEvent('placesfound', this.places);
+    }
+
+    guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 }
 

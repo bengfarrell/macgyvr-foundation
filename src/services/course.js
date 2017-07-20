@@ -38,13 +38,15 @@ export default class Course extends EventListener {
     }
 
     previewHole(id, camera) {
-        let hole = this.poi.getHoleById(id);
+        let holes = this.poi.getHolePath(id);
+        this.map.drawPath(holes.origin, holes.destination);
         AFrameUtils.addAnimation(camera, {
             attribute: 'position',
             duration: 2000,
+            delay: 1000,
             easing: 'ease-in-out',
             from: AFRAME.utils.coordinates.stringify(camera.getAttribute('position')),
-            to: AFRAME.utils.coordinates.stringify(hole.position)
+            to: AFRAME.utils.coordinates.stringify(holes.destination.position)
         }, true);
     }
 }

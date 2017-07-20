@@ -6,14 +6,30 @@ export default class Mapping extends EventListener {
         this.config = config;
         this.currentLocation = loc;
         this.load(loc);
+        this.waypointIndex = 0;
     }
 
     set location(loc) {
         this.currentLocation = loc;
-        this._mapbox.jumpTo( {
+        this._mapbox.jumpTo({
             zoom: 16,
             center: [this.currentLocation.coords.longitude, this.currentLocation.coords.latitude]
         });
+    }
+
+    drawPath(origin, destination) {
+        this._directions.setOrigin([origin.location.longitude, origin.location.latitude]);
+        this._directions.setDestination([destination.location.longitude, destination.location.latitude]);
+        this.location = this.currentLocation; // refresh location because setting waypoints zooms map
+    }
+
+    set waypoints(places) {
+        this._directions.setOrigin([places[0].location.longitude, places[0].location.latitude]);
+        for (let c = 1; c < places.length-1; c++) {
+            this.addWaypoint(places[c]);
+        }
+        this._directions.setDestination([places[places.length-1].location.longitude, places[places.length-1].location.latitude]);
+        this.location = this.currentLocation; // refresh location because setting waypoints zooms map
     }
 
     load(loc) {
@@ -33,6 +49,13 @@ export default class Mapping extends EventListener {
             height: this.config.mapMetersHeight * this.config.pixelsToMeters
         });
 
+        this._directions = new MapboxDirections({
+            unit: 'metric',
+            profile: 'walking',
+            accessToken: this.config.mapboxAccessToken
+        });
+        this._mapbox.addControl(this._directions);
+
         if (!this._mapbox.loaded()) {
             this._mapbox.once('load', () => {
                 this._mapbox.resize();
@@ -42,6 +65,11 @@ export default class Mapping extends EventListener {
             this._mapbox.resize();
             this.onMapLoaded();
         }
+    }
+
+    addWaypoint(place) {
+        this._directions.addWaypoint(this.waypointIndex, [place.location.longitude, place.location.latitude]);
+        this.waypointIndex++;
     }
 
     onMapLoaded() {

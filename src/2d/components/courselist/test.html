@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>CourseList</title>
+    <script src="../sampledata.js"></script>
     <script src="courselist.js"></script>
+    <link href="../../../global.css" rel="stylesheet" />
+    <link href="courselist.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
-<abeach-courselist></abeach-courselist>
+<abeach-courselist maxholes="6"></abeach-courselist>
 
 <script>
     document.body.onload = function() {
-        let holes = [
-            {name: 'Hole 1'}, {name: 'Hole 2'}, {name: 'Hole 3'}, {name: 'Hole 4'}, {name: 'Hole 4'},
-            {name: 'Hole 5'}, {name: 'Hole 6'}, {name: 'Hole 7'}, {name: 'Hole 8'}, {name: 'Hole 9'}
-        ];
-        document.querySelector('abeach-courselist').setAttribute('holes', JSON.stringify(holes));
+        document.querySelector('abeach-courselist').data = appdata.places;
     };
 </script>
 </body>

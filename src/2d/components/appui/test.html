@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>UI</title>
 
+    <script src="../sampledata.js"></script>
     <script src="appui.js"></script>
     <script src="../courselist/courselist.js"></script>
     <script src="../coursechooserpage/coursechooserpage.js"></script>
+
+    <link href="../../../global.css" rel="stylesheet" />
+    <link href="../courselist/courselist.css" rel="stylesheet" />
+    <link href="../coursechooserpage/coursechooserpage.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
 
@@ -15,11 +21,7 @@
 
 <script>
     document.body.onload = function() {
-        let holes = [
-            {name: 'Hole 1'}, {name: 'Hole 2'}, {name: 'Hole 3'}, {name: 'Hole 4'}, {name: 'Hole 4'},
-            {name: 'Hole 5'}, {name: 'Hole 6'}, {name: 'Hole 7'}, {name: 'Hole 8'}, {name: 'Hole 9'}
-        ];
-        document.querySelector('abeach-appui').setAttribute('appdata', JSON.stringify( { places: holes } ));
+        document.querySelector('abeach-appui').data = appdata;
     };
 </script>
 </body>

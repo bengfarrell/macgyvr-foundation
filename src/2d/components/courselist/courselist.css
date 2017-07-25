@@ -1,0 +1,89 @@
+abeach-courselist ul {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    overflow: scroll;
+}
+
+abeach-courselist li:not(:last-child) {
+    border-bottom-color: #ababab;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+abeach-courselist li.disabled:not(:last-child) {
+    border-bottom-color: #8a8a8a;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+abeach-courselist li {
+    list-style: none;
+    height: 40px;
+    display: flex;
+}
+
+abeach-courselist li .index {
+    background-color: #00aaff;
+    color: white;
+    width: 35px;
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 50px;
+}
+
+abeach-courselist li .name{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex: 1;
+}
+
+abeach-courselist li.disabled {
+    opacity: .25;
+    background-color: #cccccc;
+}
+
+abeach-courselist li .distance {
+    font-size: x-small;
+    margin-top: 15px;
+    width: 50px;
+    text-align: right;
+}
+
+abeach-courselist li .rating {
+    background-color: #00aaff;
+    color: white;
+    width: 25px;
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+abeach-courselist li .remove {
+    margin-left: 15px;
+}
+
+abeach-courselist li .rating.par1 {
+    background-color: #00c10b;
+}
+abeach-courselist li .rating.par2 {
+    background-color: #a7c100;
+}
+abeach-courselist li .rating.par3 {
+    background-color: #c1b200;
+}
+abeach-courselist li .rating.par4 {
+    background-color: #c17500;
+}
+abeach-courselist li .rating.par5 {
+    background-color: #c13100;
+}

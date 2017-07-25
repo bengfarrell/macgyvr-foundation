@@ -1,0 +1,16 @@
+let appdata = { places: [
+    {id: 1, name: 'Hole 1', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 2, name: 'Hole 2', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 3, name: 'Hole 3', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 4, name: 'Hole 4', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 5, name: 'Hole 5', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 6, name: 'Hole 6', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 7, name: 'Hole 7', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 8, name: 'Hole 8', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 9, name: 'Hole 9', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 10, name: 'Hole 10', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 11, name: 'Hole 11', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 12, name: 'Hole 12', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 13, name: 'Hole 13', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+    {id: 14, name: 'Hole 14', distance: Math.random() * 1000, par: parseInt(Math.random()*5) +1},
+]};

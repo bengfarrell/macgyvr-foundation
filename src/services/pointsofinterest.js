@@ -9,16 +9,6 @@ export default class PointsOfInterest extends EventListener {
     }
 
     /**
-     * populate/refresh world positions
-     * @param map
-     */
-    updateWorldPositions(map) {
-        this.places.forEach( i => {
-            i.position = map.project(i.location.longitude, i.location.latitude);
-        });
-    }
-
-    /**
      * places search
      * @param geo
      */
@@ -57,35 +47,8 @@ export default class PointsOfInterest extends EventListener {
      */
     sortByProximity() {
         this.places = this.places.sort( function(a, b) {
-            return a.distance - b.distance;
+            return a.distanceFromMe - b.distanceFromMe;
         });
-    }
-
-    /**
-     * get hole by id
-     * @param id
-     */
-    getHoleById(id) {
-        return this.places.filter(function(place) { return id === place.id; })[0];
-    }
-
-    /**
-     * get start/origin and target/destination
-     * @param id of target hole
-     */
-    getHolePath(id) {
-        let retObj = {};
-        for (let c = 0; c < this.places.length; c++) {
-            if (this.places[c].id === id) {
-                retObj.destination = this.places[c];
-                if (c > 0) {
-                    retObj.origin = this.places[c-1];
-                } else {
-                    retObj.origin = { location: this.startLocation.coords };
-                }
-                return retObj;
-            }
-        }
     }
 
     /**
@@ -96,7 +59,7 @@ export default class PointsOfInterest extends EventListener {
             return;
         }
         this.places.forEach((loc) => {
-            loc.distance = GeoMath.calculateDistance(loc.location, this.geo.coords);
+            loc.distanceFromMe = GeoMath.calculateDistance(loc.location, this.geo.coords);
         });
         this.sortByProximity();
     }

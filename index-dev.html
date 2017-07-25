@@ -12,47 +12,33 @@
 
     <link href="node_modules/mapbox-gl/dist/mapbox-gl.css" rel="stylesheet" />
     <link href="node_modules/mapbox-gl/plugins/src/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css" rel="stylesheet" />
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
+    <link href="./src/global.css" rel="stylesheet" />
+    <link href="./src/2d/components/coursechooserpage/coursechooserpage.css" rel="stylesheet" />
+    <link href="./src/2d/components/courselist/courselist.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="main">
+        <a-scene embedded id="scene" vr-mode-ui="enabled: false">
+            <a-entity id="camera" camera="userHeight: 5" rotation="-75 0 0" look-controls></a-entity>
+        </a-scene>
 
-    <a-scene embedded id="scene" vr-mode-ui="enabled: false">
-        <a-entity id="camera" camera="userHeight: 5" rotation="-75 0 0" look-controls></a-entity>
-    </a-scene>
-
-    <abeach-appui></abeach-appui>
+        <abeach-appui></abeach-appui>
 
 
-    <script>
-        var loader = new BrowserESModuleLoader();
-        loader.import('./src/app.js').then(function(App) {
-            var app = new App.default(document.querySelector('a-scene'), {
-                simulateLocation: { latitude: 37.814292699999996, longitude: -122.24341519999999 },
-                mapboxAccessToken: 'pk.eyJ1IjoiYmZhcnJlbGxmb3JldmVyIiwiYSI6ImNqMWJpZXRrNzA5MmIzMnFxaTFzczI2MTYifQ.QONAIJnJjaxg5ktaIhGtJg',
-                mapMetersWidth: 200,
-                mapMetersHeight: 200,
-                pixelsToMeters: 10,
-                applicationUI: document.querySelector('abeach-appui')
+        <script>
+            var loader = new BrowserESModuleLoader();
+            loader.import('./src/app.js').then(function(App) {
+                var app = new App.default(document.querySelector('a-scene'), {
+                    simulateLocation: { latitude: 37.814292699999996, longitude: -122.24341519999999 },
+                    mapboxAccessToken: 'pk.eyJ1IjoiYmZhcnJlbGxmb3JldmVyIiwiYSI6ImNqMWJpZXRrNzA5MmIzMnFxaTFzczI2MTYifQ.QONAIJnJjaxg5ktaIhGtJg',
+                    mapMetersWidth: 200,
+                    mapMetersHeight: 200,
+                    pixelsToMeters: 10,
+                    applicationUI: document.querySelector('abeach-appui')
+                });
             });
-        });
-
-        window.addEventListener('resize', function() {
-            onPageResize();
-        });
-
-        function onPageResize() {
-            document.querySelector('abeach-appui').style.height = window.innerHeight/2 + 'px';
-            document.querySelector('a-scene').style.height = window.innerHeight/2 + 'px';
-        }
-        onPageResize();
-    </script>
+        </script>
+    </div>
 </body>
 </html>

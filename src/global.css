@@ -1,0 +1,41 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #3c3c3c;
+}
+
+.main {
+    display: inline-block;
+    width: 100vw;
+    height: 100vh;
+}
+
+a-scene, abeach-appui {
+    height: 50%;
+    width: 100%;
+    display: inline-block;
+}
+
+.text-light {
+    color: #999999;
+}
+
+.beach-button {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 7px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.beach-button.disabled {
+    background: #e6e9ee;
+}

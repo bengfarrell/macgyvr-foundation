@@ -33,8 +33,15 @@ export default class Main extends BaseApplication {
             this.holes
         ]);
 
-        this.config.applicationUI.setAttribute('appdata', JSON.stringify( { places: params.places }));
-        this.config.applicationUI.addEventListener( CourseChooserPage.PREVIEW_HOLE, event => this.course.previewHole(event.detail.id, document.querySelector('#camera')));
+        this.config.applicationUI.data = { places: params.places };
+        this.config.applicationUI.addEventListener( ApplicationUI.PREVIEW_HOLE, event => this.course.previewHole(event.detail.id, document.querySelector('#camera')));
+        this.config.applicationUI.addEventListener( ApplicationUI.COURSE_UPDATE, event => this.onCourseUpdate(event));
+    }
+
+    onCourseUpdate(event) {
+        this.course.updateCourse(event.detail.course);
+        this.config.applicationUI.data = { places: event.detail.course };
+
     }
 
     onLocationUpdate(params) {

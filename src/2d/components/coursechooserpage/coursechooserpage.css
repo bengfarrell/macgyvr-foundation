@@ -1,0 +1,47 @@
+abeach-page-coursechooser {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+abeach-courselist {
+    display: inline-block;
+    height: calc(100% - 60px);
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+abeach-page-coursechooser .footer-row {
+    background-color: #3c3c3c;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    color: whitesmoke;
+}
+
+abeach-page-coursechooser .footer-row .label {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+
+abeach-page-coursechooser .footer-row .label2 {
+    padding-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+abeach-page-coursechooser .footer-row .ok {
+    margin-left: 10px;
+}
+
+abeach-page-coursechooser .footer-row .maxholes {
+    font-weight: bolder;
+    font-size: x-large;
+    text-align: center;
+    padding-top: 3px;
+    width: 50px;
+    background-color: #31618c;
+}

@@ -9,5 +9,9 @@
     "transform": [
       "babelify"
     ]
+  },
+  "dependencies": {
+    "aframe-extras": "^3.10.0",
+    "collada-dae-parser": "^0.12.0"
   }
 }

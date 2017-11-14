@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Assets</title>
+    <script src="../node_modules/macgyvr/node_modules/aframe/dist/aframe-master.js"></script>
+    <script src="../node_modules/aframe-extras/dist/aframe-extras.loaders.js"></script>
+</head>
+<body>
+    <a-scene>
+       <a-assets>
+            <!--<a-asset-item id="golfer-obj" src="golfer/model.obj"></a-asset-item>
+            <a-asset-item id="golfer-mtl" src="golfer/model.mtl"></a-asset-item>-->
+            <a-asset-item id="golfer" src="./golfer/golfer.gltf"></a-asset-item>
+        </a-assets>
+
+        <!--<a-entity obj-model="obj: #golfer-obj; mtl: #golfer-mtl"></a-entity>-->
+
+        <a-entity gltf-model-next="#golfer" scale="1 1 1" position="0 0 -5" animation-mixer="clip: *;"></a-entity>
+    </a-scene>
+</body>
+</html>
